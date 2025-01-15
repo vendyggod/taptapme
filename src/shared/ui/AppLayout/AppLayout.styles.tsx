@@ -11,7 +11,8 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   height: 49rem;
-  background-color: #c9c9c9;
+  padding: 2rem 10px;
+  /* background-color: #c9c9c9; */
 `;
 
 export const StyledAppLayout = styled.div`
