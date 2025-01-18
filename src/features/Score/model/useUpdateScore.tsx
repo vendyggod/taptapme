@@ -1,15 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addScore } from '../../../../services/apis/api';
+import {useMutation} from "@tanstack/react-query";
 
 export const useUpdateScore = () => {
-  const queryClient = useQueryClient();
   const { mutate: updateScore, isLoading: isUpdating } = useMutation({
-    mutationFn: addScore,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['users'],
-      });
-    },
+    mutationFn: () => addScore(),
 
     onError: (error) => console.log(error),
   });

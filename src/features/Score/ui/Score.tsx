@@ -1,12 +1,13 @@
-import { useScore } from './model/useScore';
-import { StyledScore } from './Score.styles';
+import {FC} from 'react';
+import {StyledScore} from './Score.styles';
+import {useUser} from "../../../app/providers/UserProvider.tsx";
 
-export const Score: React.FC = () => {
-  const { score } = useScore();
+export const Score: FC = () => {
+    const {user} = useUser()
 
-  return (
-    <StyledScore>
-      <span>{score}</span>
-    </StyledScore>
-  );
+    return (
+        <StyledScore>
+            <span>{`${user?.score || 0}`}</span>
+        </StyledScore>
+    );
 };
