@@ -1,3 +1,4 @@
+import {FC} from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { Home } from '../pages/Home';
 import { Improve } from '../pages/Improve';
@@ -7,7 +8,7 @@ import { Quests } from '../pages/Quests';
 import { Friends } from '../pages/Friends';
 import { AppLayout } from '../shared/ui';
 
-export const AppRoutes: React.FC = () => {
+export const AppRoutes: FC = () => {
   return (
     <BrowserRouter>
       <Routes>
