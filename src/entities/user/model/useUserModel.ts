@@ -1,7 +1,6 @@
-import React, {useCallback, useEffect, useState} from "react";
-import {IUser} from "../../../shared/types/";
-import {getUser, updateScore} from "../../../services/apis/api.ts";
-import {SCORE_PER_CLICK} from "../../../shared/consts.ts";
+import {useCallback, useEffect, useState} from "react";
+import {IUser} from "../../../shared/types";
+import {getUser, updateUserAPI} from "../../../services/apis/api.ts";
 import debounce from "lodash/debounce";
 
 //  Returns User object loaded from DB + function to add score
@@ -9,9 +8,10 @@ export const useUserModel = () => {
     const [user, setUser] = useState<IUser | null>(null);
 
     const updateUser = (newData: Partial<IUser>) => {
-        setUser((prev) => prev ? {...prev, newData} : null)
+        setUser((prevUser) => prevUser ? {...prevUser, ...newData} : null)
     }
 
+    // Fetching user data and save it to local state to pass to context
     useEffect(() => {
         const loadUserData = async () => {
             try {
@@ -25,30 +25,28 @@ export const useUserModel = () => {
         loadUserData();
     }, []);
 
-    const syncScoreWithServer = useCallback(
-        debounce(async () => {
+    // Syncing new user data with user object in database
+    const syncUserWithServer = useCallback(
+        debounce(async (updatedUser: IUser) => {
             if (user) {
                 try {
-                    await updateScore(user.score);
+                    await updateUserAPI(updatedUser);
                 } catch (error) {
                     console.error("Failed to sync score with server:", error);
                 }
             }
-        }, 1),
+        }, 10),
         [user]
     );
 
     useEffect(() => {
-        syncScoreWithServer();
-        return () => syncScoreWithServer.cancel();
-    }, [syncScoreWithServer]);
-
-    const addScore: React.MouseEventHandler<HTMLButtonElement> = () => {
         if (user) {
-            setUser({...user, score: user.score + SCORE_PER_CLICK});
+            syncUserWithServer(user);
         }
-    };
 
-    return {user, addScore};
+        return () => syncUserWithServer.cancel();
+    }, [user, syncUserWithServer]);
+
+    return {user, updateUser};
 }
 
