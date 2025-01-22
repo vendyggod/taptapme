@@ -1,1 +1,0 @@
-export {useUserModel} from './model/useUserModel.ts'
