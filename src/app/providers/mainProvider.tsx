@@ -6,6 +6,6 @@ interface MainProviderProps {
     children: React.ReactNode;
 }
 
-export function MainProvider({children}) {
+export function MainProvider({children}: MainProviderProps) {
     return <Provider store={store}>{children}</Provider>;
 }

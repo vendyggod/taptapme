@@ -1,9 +1,21 @@
-// export interface Score {
-//   score: number;
-// }
+export interface IUserInitialLocalState {
+    user: IUser;
+    userSettings: IUserSettings;
+    isInitialized: boolean
+}
 
 export interface IUser {
-    id: string;
+    id: number | null;
     nickname: string;
-    score: number;
+    avatar_url: string;
+}
+
+export interface IUserSettings {
+    id: number | null;
+    total_score: number;
+    score_per_click: number;
+    score_per_sec: number;
+    total_energy: number;
+    current_energy: number;
+    energy_per_sec: number;
 }

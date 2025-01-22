@@ -1,5 +1,5 @@
 import {IoHomeOutline} from 'react-icons/io5';
-import {StyledNav, StyledNavLink} from './Navigation.styles';
+import {StyledNav, StyledNavLink} from './Navigation.styles.tsx';
 import {FaAngleDoubleUp} from 'react-icons/fa';
 import {PiSpinnerBall} from 'react-icons/pi';
 import {LuNotepadText} from 'react-icons/lu';

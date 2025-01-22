@@ -1,12 +1,17 @@
-import { AvatarRounded } from '../../shared/ui';
-import { StyledAccountOverview } from './AccountOverview.styles';
+import {AvatarRounded} from '../../shared/ui';
+import {StyledAccountOverview} from './AccountOverview.styles';
+import {FC} from "react";
+import {useSelector} from "react-redux";
+import {getUser} from "../../entities/user/model/userSlice.ts";
 
-export const AccountOverview: React.FC = () => {
-  return (
-    <StyledAccountOverview>
-      <AvatarRounded url="https://64.media.tumblr.com/2a2459f9b322613562122a3bf853e50d/tumblr_nduaprpEwW1tqy07mo2_250.gifv" />
-      <span>Kurome</span>
-      {/* <ExpBar /> */}
-    </StyledAccountOverview>
-  );
+export const AccountOverview: FC = () => {
+    const {avatar_url, nickname} = useSelector(getUser)
+
+    return (
+        <StyledAccountOverview>
+            <AvatarRounded
+                url={avatar_url}/>
+            <span>{nickname}</span>
+        </StyledAccountOverview>
+    );
 };

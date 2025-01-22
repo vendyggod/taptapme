@@ -1,2 +1,2 @@
-export { Header } from './Header/Header';
-export { Navigation } from './Navigation/Navigation';
+export {Header} from '../shared/ui/Header/Header';
+export {Navigation} from '../shared/ui/Navigation/Navigation';

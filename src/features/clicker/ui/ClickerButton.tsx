@@ -1,13 +1,13 @@
-import {Container, StyledButton} from './ClickerButton.styles';
 import {FC} from "react";
-import {useUser} from "../../../app/UserContext.tsx";
+import {Container, StyledButton} from './ClickerButton.styles.tsx';
+import {useClicker} from "../model/useClicker.tsx";
 
 export const ClickerButton: FC = () => {
-    const {addScore} = useUser()
+    const {increaseScore} = useClicker()
 
     return (
         <Container>
-            <StyledButton onClick={addScore}>Click me</StyledButton>
+            <StyledButton onClick={increaseScore}>Click me</StyledButton>
         </Container>
     );
 };
