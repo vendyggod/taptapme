@@ -1,3 +1,5 @@
-export const PageNotFound: React.FC = () => {
-  return <div>PageNotFound</div>;
+import {FC} from "react";
+
+export const PageNotFound: FC = () => {
+    return <div>PageNotFound</div>;
 };
