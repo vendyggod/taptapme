@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Container, StyledButton} from './ClickerButton.styles.tsx';
-import {useClicker} from "../model/useClicker.tsx";
+import {useClicker} from "../";
 
 export const ClickerButton: FC = () => {
     const {increaseScore} = useClicker()
