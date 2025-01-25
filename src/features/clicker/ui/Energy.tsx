@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Container, StyledEnergy} from "./Energy.styles.tsx";
-import {useEnergy} from "../model/useEnergy.ts";
+import {useEnergy} from "../";
 
 export const Energy: FC = () => {
     const {total_energy, current_energy} = useEnergy()
