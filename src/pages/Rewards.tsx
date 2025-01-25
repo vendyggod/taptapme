@@ -1,3 +1,5 @@
-export const Rewards: React.FC = () => {
-  return <div>Rewards</div>;
+import {FC} from "react";
+
+export const Rewards: FC = () => {
+    return <div>Rewards</div>;
 };
