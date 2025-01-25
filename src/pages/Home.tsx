@@ -1,7 +1,7 @@
-import {ClickerButton} from '../features/clicker/ui/ClickerButton';
-import {Score} from '../features/score/ui/Score';
+import {ClickerButton} from '../features/clicker';
+import {Score} from '../widgets';
 import {FC} from "react";
-import {Energy} from "../features/clicker/ui/Energy.tsx";
+import {Energy} from "../features/clicker";
 
 export const Home: FC = () => {
     return (
