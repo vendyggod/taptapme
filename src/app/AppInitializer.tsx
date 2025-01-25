@@ -1,48 +1,46 @@
 import React, {useEffect} from "react";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser, fetchUserSettings, updateUserSettingsAPI} from "../services/apis/api.ts";
+import {fetchUser, updateUserSettingsAPI} from "../services/apis/api.ts";
 import {RootState} from "./store.ts";
-import {setInitialized, updateSettings, updateUser} from "../entities/user/model/userSlice.ts";
+import {getUserSettings, setInitialized, updateUser} from "../entities/user/model/userSlice.ts";
 import Spinner from "../shared/ui/Spinner/Spinner.tsx";
 import {usePassiveIncome} from "../features/passive-income/model/usePassiveIncome.tsx";
 
 export const AppInitializer = ({children}: { children: React.ReactNode }) => {
     const dispatch = useDispatch();
     const isInitialized = useSelector((state: RootState) => state.user.isInitialized);
-    const userSettingsLocal = useSelector((state: RootState) => state.user.userSettings);
+    const userSettingsLocal = useSelector(getUserSettings);
     const startPassiveIncome = usePassiveIncome()
 
+    // Fetching data and store it to RTK
     const {data: user} = useQuery(['user'], fetchUser);
-    const {data: userSettings} = useQuery(['userSettings'], fetchUserSettings);
-    const {mutate} = useMutation(updateUserSettingsAPI);
+    const {mutate: updadateSettingsAPI} = useMutation(updateUserSettingsAPI);
 
-    // Fetching data to store it to redux local global state
     useEffect(() => {
-        if (user && userSettings) {
+        if (user) {
             dispatch(updateUser(user));
-            dispatch(updateSettings(userSettings));
-            dispatch(setInitialized());
+            dispatch(setInitialized())
         }
-    }, [user, userSettings, dispatch]);
+    }, [user, dispatch]);
 
-    // Starting passive income
+    // Start passive income
     useEffect(() => {
         startPassiveIncome()
     }, [startPassiveIncome]);
 
-    // Listening for closing app by user
+    // Listening for closing tab
     useEffect(() => {
         const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-            mutate(userSettingsLocal);
+            updadateSettingsAPI(userSettingsLocal);
             e.preventDefault();
-            e.returnValue = '';
+            e.returnValue = ''; // Deprecated but needs to be for older browsers
         };
 
         window.addEventListener('beforeunload', handleBeforeUnload)
 
         return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-    }, [mutate, userSettingsLocal]);
+    }, [updadateSettingsAPI, userSettingsLocal]);
 
     if (!isInitialized) {
         return <Spinner/>;
