@@ -10,7 +10,7 @@ export const useClicker = () => {
 
     const debouncedClick = useDebouncedCallback((settings: IUserSettings) => {
         updateUserSettingsAPI(settings)
-    }, 100)
+    }, 500)
 
     const increaseScore = () => {
         dispatch(updateScoreClick())
