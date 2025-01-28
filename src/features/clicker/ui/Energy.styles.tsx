@@ -6,8 +6,7 @@ export const Container = styled.div`
 `;
 
 export const StyledEnergy = styled.div`
-    font-size: 3.2rem;
+    font-size: 2.6rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 6.4rem;
 `;
