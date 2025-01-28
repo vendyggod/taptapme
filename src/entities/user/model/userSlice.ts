@@ -16,13 +16,7 @@ const initialState: IUserInitialLocalState = {
         current_energy: 0,
         energy_per_sec: 0,
     },
-    user_cards: {
-        user_id: null,
-        card_id: null,
-        current_lvl: 0,
-        score_per_sec: 0,
-    },
-
+    user_cards: [],
     isInitialized: false,
 }
 
