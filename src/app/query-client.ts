@@ -2,10 +2,8 @@ import {DefaultOptions, QueryClient} from '@tanstack/react-query';
 
 const defaultOptions: DefaultOptions = {
     queries: {
-        staleTime: Infinity,
-        cacheTime: Infinity,
+        staleTime: 0,
         refetchOnWindowFocus: false,
-        refetchOnMount: false,
         refetchOnReconnect: true,
     },
 };
