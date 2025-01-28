@@ -33,3 +33,14 @@ export const fetchCards = async (): Promise<TCards> => {
     console.log(data)
     return data
 }
+
+export const updateCardLevel = async (cardId: number, newLvl: number): Promise<void> => {
+    const {error} = await supabase
+        .from('user_cards')
+        .update({current_lvl: newLvl})
+        .eq('user_id', USER_ID)
+        .eq('card_id', cardId)
+        .select()
+
+    if (error) throw new Error(error.message);
+}
