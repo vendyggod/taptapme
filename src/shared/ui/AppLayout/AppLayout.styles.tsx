@@ -3,23 +3,22 @@ import styled from 'styled-components';
 export const Container = styled.div`
     height: 100dvh;
     width: 100%;
+    padding: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
-
-export const Main = styled.main`
-    height: 49rem;
-    padding: 2rem 10px;
-    /* background-color: #c9c9c9; */
-    overflow-y: auto;
 `;
 
 export const StyledAppLayout = styled.div`
-    height: 60.5rem;
-    overflow: scroll;
-    width: 34rem;
-    border-radius: 16px;
+    height: 100%;
+    width: 100%;
     background-color: #000;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 `;
+
+export const Main = styled.main`
+    padding: 2rem 10px;
+    overflow-y: auto;
+`;
+
+
