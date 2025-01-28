@@ -1,9 +1,10 @@
-import { StyledImg } from './AvatarRounded.styles';
+import {StyledAvatarRounded} from './AvatarRounded.styles';
+import {FC} from "react";
 
 interface AvatarRoundedProps {
-  url: string;
+    url: string;
 }
 
-export const AvatarRounded: React.FC<AvatarRoundedProps> = ({ url }) => {
-  return <StyledImg src={url} alt="avatar" />;
+export const AvatarRounded: FC<AvatarRoundedProps> = ({url}) => {
+    return <StyledAvatarRounded src={url} alt="avatar"/>;
 };
