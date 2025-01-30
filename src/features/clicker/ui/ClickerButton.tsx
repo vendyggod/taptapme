@@ -3,7 +3,7 @@ import {Container, StyledButton} from './ClickerButton.styles.tsx';
 import {useClicker} from "../";
 
 export const ClickerButton: FC = () => {
-    const {increaseScore} = useClicker()
+    const increaseScore = useClicker()
 
     return (
         <Container>
