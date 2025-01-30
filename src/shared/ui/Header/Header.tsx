@@ -1,4 +1,4 @@
-import {AccountOverview} from '../../../widgets/AccountOverview/AccountOverview.tsx';
+import {AccountOverview} from '../../../widgets';
 import {StyledHeader} from './Header.styles.tsx';
 import {FC} from "react";
 
