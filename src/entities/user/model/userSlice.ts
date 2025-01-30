@@ -1,7 +1,5 @@
-import {IUser, IUserInitialLocalState, IUserSettings} from "../../../shared/types";
+import {IUser, IUserInitialLocalState, IUserSettings, TUserCards} from "../../../shared/types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../../app/store.ts";
-
 
 const initialState: IUserInitialLocalState = {
     id: null,
@@ -28,14 +26,12 @@ export const userSlice = createSlice({
             state.id = action.payload.id;
             state.nickname = action.payload.nickname;
             state.avatar_url = action.payload.avatar_url;
-            state.user_settings = action.payload.user_settings;
-            state.user_cards = action.payload.user_cards;
         },
-        updateSettings: (state: IUserInitialLocalState, action: PayloadAction<Partial<IUserSettings>>) => {
-            state.user_settings = {
-                ...state.user_settings,
-                ...action.payload
-            };
+        updateSettings: (state: IUserInitialLocalState, action: PayloadAction<IUserSettings>) => {
+            state.user_settings = action.payload;
+        },
+        updateCards: (state: IUserInitialLocalState, action: PayloadAction<TUserCards>) => {
+            state.user_cards = action.payload;
         },
         updateScoreClick: (state: IUserInitialLocalState) => {
             const {score_per_click, current_energy, total_score} = state.user_settings;
@@ -63,10 +59,12 @@ export const userSlice = createSlice({
     },
 })
 
-export const {updateUser, updateSettings, setInitialized, updateScoreClick, updateScorePassive} = userSlice.actions;
+export const {
+    updateUser,
+    updateSettings,
+    updateCards,
+    setInitialized,
+    updateScoreClick,
+    updateScorePassive
+} = userSlice.actions;
 export default userSlice.reducer;
-
-// Selectors
-export const getUser = (state: RootState) => state.user;
-export const getUserSettings = (state: RootState) => state.user.user_settings;
-export const getUserCards = (state: RootState) => state.user.user_cards;
