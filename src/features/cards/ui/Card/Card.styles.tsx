@@ -8,6 +8,7 @@ export const StyledCard = styled.li<{ $disabled: boolean }>`
     background-color: #222;
     padding: 3px;
     border-radius: 12px;
+    cursor: pointer;
 
     opacity: ${props => props.$disabled ? '0.5' : '1'};
 
