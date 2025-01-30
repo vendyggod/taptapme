@@ -1,6 +1,6 @@
 import {RuleSet} from "styled-components/dist/types";
 
-export const USER_ID: number = 1;
+export const USER_ID: number = 4;
 
 const size = {
     mobile: "320px",
