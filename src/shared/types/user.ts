@@ -1,15 +1,18 @@
 import {TUserCards} from "./card.ts";
 
-export interface IUserInitialLocalState extends IUser {
-    isInitialized: boolean,
+export interface IUserInitialLocalState {
+    id: number | null;
+    nickname: string;
+    avatar_url: string;
+    user_settings: IUserSettings;
+    user_cards: TUserCards;
+    isInitialized: boolean;
 }
 
 export interface IUser {
     id: number | null;
     nickname: string;
     avatar_url: string;
-    user_settings: IUserSettings;
-    user_cards: TUserCards;
 }
 
 export interface IUserSettings {
